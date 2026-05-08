@@ -11,6 +11,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/iss/, ''),
       },
+      '/api/news': {
+        target: 'https://gnews.io/api/v4',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/news/, ''),
+      },
     },
   },
 })

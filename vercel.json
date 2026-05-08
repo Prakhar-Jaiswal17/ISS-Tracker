@@ -5,6 +5,10 @@
       "destination": "http://api.open-notify.org/$1"
     },
     {
+      "source": "/api/news/(.*)",
+      "destination": "https://gnews.io/api/v4/$1"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

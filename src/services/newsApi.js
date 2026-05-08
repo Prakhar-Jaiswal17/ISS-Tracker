@@ -1,5 +1,8 @@
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
-const BASE_URL = 'https://gnews.io/api/v4';
+
+// In production (Vercel), use the rewrite proxy to avoid CORS.
+// In dev, Vite proxy handles it.
+const BASE_URL = '/api/news';
 
 /**
  * Fetch top headlines from GNews.io
