@@ -1,27 +1,21 @@
 import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  CartesianGrid,
-  Legend,
+  LineChart, Line, XAxis, YAxis, Tooltip,
+  ResponsiveContainer, CartesianGrid, Legend,
 } from 'recharts';
 import useStore from '../store/useStore';
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null;
   return (
-    <div
-      className="p-2 rounded-lg shadow-md border"
-      style={{
-        background: 'var(--bg-secondary)',
-        borderColor: 'var(--border-color)',
-      }}
-    >
-      <p className="text-[10px] mb-0.5" style={{ color: 'var(--text-muted)' }}>{label}</p>
-      <p className="text-sm font-bold" style={{ color: '#ef4444' }}>
+    <div style={{
+      padding: '8px 12px',
+      borderRadius: '8px',
+      background: 'var(--bg-secondary)',
+      border: '1px solid var(--border-color)',
+      boxShadow: 'var(--shadow-soft)',
+    }}>
+      <p style={{ fontSize: '10px', color: 'var(--text-muted)', marginBottom: '2px' }}>{label}</p>
+      <p style={{ fontSize: '14px', fontWeight: 700, color: '#ef4444' }}>
         {payload[0].value.toLocaleString()} km/h
       </p>
     </div>
@@ -32,27 +26,15 @@ export default function SpeedChart() {
   const speedHistory = useStore((s) => s.issSpeedHistory);
 
   return (
-    <div
-      className="rounded-2xl h-full flex flex-col"
-      style={{
-        background: 'var(--bg-secondary)',
-        border: '1px solid var(--border-color)',
-        boxShadow: 'var(--shadow-soft)',
-      }}
-    >
-      <h3
-        className="text-lg font-bold px-6 pt-6 pb-4"
-        style={{ color: 'var(--text-primary)' }}
-      >
-        ISS Speed Trend
-      </h3>
+    <div className="card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div className="card-header">
+        <h3 className="card-title">ISS Speed Trend</h3>
+      </div>
 
-      <div className="px-4 pb-4" style={{ height: '400px' }}>
+      <div className="chart-area">
         {speedHistory.length < 2 ? (
-          <div className="h-full flex items-center justify-center">
-            <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-              Collecting speed data... ({speedHistory.length}/2 readings)
-            </p>
+          <div className="chart-placeholder">
+            Collecting speed data... ({speedHistory.length}/2 readings)
           </div>
         ) : (
           <ResponsiveContainer width="100%" height="100%">

@@ -25,7 +25,7 @@ Rules:
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: 'mistralai/Mistral-7B-Instruct-v0.3',
+      model: 'Qwen/Qwen2.5-72B-Instruct',
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userMessage },
